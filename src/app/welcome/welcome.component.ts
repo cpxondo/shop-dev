@@ -25,9 +25,9 @@ export class WelcomeComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.translations = [
-      { code: 'es', title: 'Bienvenido a DevShop!', subtitle: 'Donde puedes comprar cualquier cosa que imagines'},
+      { code: 'es', title: 'Bienvenidos a DevShop!', subtitle: 'Donde puedes comprar cualquier cosa que imagines'},
       { code: 'en', title: 'Welcome to DevShop!', subtitle: 'Where you can buy anything you imagine'},
-      { code: 'ca', title: 'Benvigut a DevShop!', subtitle: 'On pots comprar qualsevol cosa que imagines'},
+      { code: 'ca', title: 'Benviguts a DevShop!', subtitle: 'On pots comprar qualsevol cosa que imagines'},
     ];
   }
 
@@ -38,13 +38,11 @@ export class WelcomeComponent implements OnInit, OnChanges {
     }
   }
 
-  changeLocale(code: string) {
-    const selected = this.translations.filter(function(trans) {
-      return trans.code === code;
-    });
+  changeLocale(code: string): void {
+    const selected = this.translations.find((trans) => trans.code === code);
 
-    this.title = selected[0].title;
-    this.subtitle = selected[0].subtitle;
+    this.title = selected.title;
+    this.subtitle = selected.subtitle;
   }
 
 }
