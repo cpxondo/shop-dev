@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 interface Locale {
@@ -12,6 +12,7 @@ interface Locale {
 })
 export class NavbarComponent {
   languages: Locale[];
+  selectedLanguage = 'es';
 
   @Output() changeLanguage: EventEmitter<string>;
 
@@ -24,8 +25,8 @@ export class NavbarComponent {
     ];
    }
 
-   onChangeLanguage(code: string) {
-     this.changeLanguage.emit(code);
+   onChangeLanguage() {
+     this.changeLanguage.emit(this.selectedLanguage);
    }
 
 }
