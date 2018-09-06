@@ -6,17 +6,17 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      <li [ngClass]="{'active' : activeTab === 'Welcome'}" class="nav-item">
+        <a class="nav-link" href="#" (click)="onShowWelcome()">Home</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Favourites</a>
-      </li>
-      <li class="nav-item dropdown">
-        <select class="form-control" id="selectLanguage" [(ngModel)]="selectedLanguage" (change)="onChangeLanguage()">
-          <option *ngFor="let lang of languages" [ngValue]="lang.code">{{ lang.value }}</option>
-        </select>
+      <li [ngClass]="{'active' : activeTab === 'List'}" class="nav-item">
+        <a class="nav-link" href="#" (click)="onShowItems()">List</a>
       </li>
     </ul>
+  </div>
+  <div class="dropdown right">
+    <select class="form-control" id="selectLanguage" [(ngModel)]="selectedLanguage" (change)="onChangeLanguage()">
+      <option *ngFor="let lang of languages" [ngValue]="lang.code">{{ lang.value }}</option>
+    </select>
   </div>
 </nav>

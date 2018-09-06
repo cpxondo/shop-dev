@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div class="right">
+    <input [(ngModel)]="removeItems" (change)="onChangeVisibility()" type="checkbox" >
+  </div>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Description</th>
+        <th scope="col">Available</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr [ngClass]="{'bg-secondary': !item.available}" *ngFor="let item of items" (click)="onChangeItem(item)">
+        <td>{{ item.name }}</td>
+        <td>{{ item.price | currency: item.currency }}</td>
+        <td>{{ item.description }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

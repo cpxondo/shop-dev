@@ -1,0 +1,26 @@
+<div class="container" *ngIf="selectedItem != undefined">
+  <div class="row">
+    <div class="col-6">
+    </div>
+    <div class="col-6">
+      {{ selectedItem.name }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+    </div>
+    <div class="col-6">
+      {{ selectedItem.description }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+    </div>
+    <div class="col-6">
+      {{ selectedItem.price | currency: selectedItem.currency }}
+    </div>
+  </div>
+  <div class="row">
+    <button class="btn-primary">Add to Cart</button>
+  </div>
+</div>

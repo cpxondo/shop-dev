@@ -13,11 +13,17 @@ interface Locale {
 export class NavbarComponent {
   languages: Locale[];
   selectedLanguage = 'es';
+  activeTab: string;
 
   @Output() changeLanguage: EventEmitter<string>;
+  @Output() showItems: EventEmitter<boolean>;
+  @Output() showWelcome: EventEmitter<boolean>;
 
   constructor() {
     this.changeLanguage = new EventEmitter<string>();
+    this.showItems = new EventEmitter<boolean>();
+    this.showWelcome = new EventEmitter<boolean>();
+    this.activeTab = 'Welcome';
     this.languages = [
       { code: 'es', value: 'Castellano'},
       { code: 'en', value: 'English'},
@@ -27,6 +33,16 @@ export class NavbarComponent {
 
    onChangeLanguage() {
      this.changeLanguage.emit(this.selectedLanguage);
+   }
+
+   onShowItems() {
+     this.showItems.emit(true);
+     this.activeTab = 'List';
+   }
+
+   onShowWelcome() {
+     this.showWelcome.emit(true);
+     this.activeTab = 'Welcome';
    }
 
 }

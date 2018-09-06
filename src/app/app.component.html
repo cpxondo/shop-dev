@@ -1,2 +1,4 @@
-<app-navbar (changeLanguage)="eventTranslate($event)"></app-navbar>
-<app-welcome [recievedTranslate]="clickedTranslation"></app-welcome>
+<app-navbar (changeLanguage)="eventTranslate($event)" (showWelcome)="eventWelcomeVisibility($event)" (showItems)="eventItemsVisibility($event)"></app-navbar>
+<app-welcome *ngIf="welcomeVisibility" [recievedTranslate]="clickedTranslation"></app-welcome>
+<app-items-list *ngIf="itemsVisibility" (changeItem)="eventItemDetails($event)"></app-items-list>
+<app-item-details *ngIf="detailsVisibility" [selectedItem]="clickedItemDetails"></app-item-details>

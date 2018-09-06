@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 interface Translate {
   code: string;
@@ -11,7 +11,7 @@ interface Translate {
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.css']
 })
-export class WelcomeComponent implements OnInit, OnChanges {
+export class WelcomeComponent implements OnChanges {
   title: string;
   subtitle: string;
   translations: Translate[];
@@ -21,9 +21,6 @@ export class WelcomeComponent implements OnInit, OnChanges {
   constructor() {
     this.title = 'Bienvenido a DevShop!';
     this.subtitle = 'Donde puedes comprar cualquier cosa que imagines';
-  }
-
-  ngOnInit() {
     this.translations = [
       { code: 'es', title: 'Bienvenidos a DevShop!', subtitle: 'Donde puedes comprar cualquier cosa que imagines'},
       { code: 'en', title: 'Welcome to DevShop!', subtitle: 'Where you can buy anything you imagine'},
