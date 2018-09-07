@@ -8,7 +8,7 @@ import { Item } from './shared/model';
 })
 export class AppComponent {
   title = 'shop-dev';
-  clickedTranslation: string;
+  clickedTranslation = 'es';
   clickedItemDetails: Item;
   itemsVisibility: boolean;
   welcomeVisibility: boolean;

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { Item } from '../shared/model';
 
 @Component({
@@ -6,14 +6,17 @@ import { Item } from '../shared/model';
   templateUrl: './items-list.component.html',
   styleUrls: ['./items-list.component.css']
 })
-export class ItemsListComponent implements OnInit {
+export class ItemsListComponent {
   items: Item[];
   removeItems: boolean;
+  searchFilter: string;
 
   @Output() changeItem: EventEmitter<Item>;
+  @Input() recievedTranslate: string;
 
   constructor() {
     this.removeItems = false;
+    this.searchFilter = undefined;
     this.changeItem = new EventEmitter<Item>();
     this.items = [
       { name: 'armor', price: 22, available: true, description: 'awesome armor', currency: 'EUR'},
@@ -27,12 +30,5 @@ export class ItemsListComponent implements OnInit {
    onChangeItem(item: Item) {
      this.changeItem.emit(item);
    }
-
-   onChangeVisibility() {
-     console.log(this.removeItems, 'visibility');
-   }
-
-  ngOnInit() {
-  }
 
 }
