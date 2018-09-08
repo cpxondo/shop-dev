@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
-import { TranslateService } from '../../shared/services/translate.service';
+import { LanguageService } from '../../shared/services/language.service';
 interface Locale {
   code: string;
   value: string;
@@ -19,7 +19,7 @@ export class NavbarComponent {
   @Output() showItems: EventEmitter<boolean>;
   @Output() showWelcome: EventEmitter<boolean>;
 
-  constructor(private translateService: TranslateService) {
+  constructor(private languageService: LanguageService) {
     this.showItems = new EventEmitter<boolean>();
     this.showWelcome = new EventEmitter<boolean>();
     this.activeTab = 'Welcome';
@@ -28,12 +28,12 @@ export class NavbarComponent {
       { code: 'en', value: 'English'},
       { code: 'ca', value: 'Valencià'}
     ];
-    translateService.setLocale('es');
+    this.languageService.language = 'es';
    }
 
    onChangeLanguage() {
      console.log(this.selectedLanguage, 'selected locale');
-     this.translateService.setLocale(this.selectedLanguage);
+     this.languageService.language = this.selectedLanguage;
    }
 
    onShowItems() {
