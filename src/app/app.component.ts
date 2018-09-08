@@ -8,7 +8,6 @@ import { Item } from './shared/model';
 })
 export class AppComponent {
   title = 'shop-dev';
-  clickedTranslation = 'es';
   clickedItemDetails: Item;
   itemsVisibility: boolean;
   welcomeVisibility: boolean;
@@ -18,10 +17,6 @@ export class AppComponent {
     this.itemsVisibility = false;
     this.detailsVisibility = false;
     this.welcomeVisibility = true;
-  }
-
-  eventTranslate(translation: string) {
-    this.clickedTranslation = translation;
   }
 
   eventItemDetails(item: Item) {

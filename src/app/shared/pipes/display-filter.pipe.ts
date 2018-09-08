@@ -7,7 +7,7 @@ import { Item } from '../model';
 export class DisplayFilterPipe implements PipeTransform {
 
   transform(values: Item[], isEnabled?: boolean, searchTerm?: string): Item[] {
-    let items = [...values];
+    let items = values ? [...values] : [];
     if (isEnabled) {
       items = items.filter((item) => item.available === true);
     }

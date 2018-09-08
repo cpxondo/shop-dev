@@ -1,0 +1,17 @@
+<div class="container" *ngIf="selectedItem != undefined">
+  <div class="card-group">
+    <div class="card">
+      <img class="card-img-top" src="..." alt="Card image cap">
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ selectedItem.name }}</h5>
+        <p class="card-text">{{ selectedItem.description }}</p>
+        <p class="card-text"><small class="text-muted">{{ selectedItem.price | currency: selectedItem.currency }}</small></p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <button type="button" class="btn btn-primary btn-lg btn-block">Add to Cart</button>
+  </div>
+</div>

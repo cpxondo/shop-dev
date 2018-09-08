@@ -1,0 +1,9 @@
+{
+  "items": [
+    { "name": "armor", "price": 22, "available": true, "description": "awesome armor", "currency": "EUR"},
+    { "name": "shield", "price": 10, "available": false, "description": "awesome shield", "currency": "USD"},
+    { "name": "sword", "price": 50, "available": true, "description": "awesome sword", "currency": "CHF"},
+    { "name": "helmet", "price": 5000, "available": true, "description": "awesome helmet", "currency": "USD"},
+    { "name": "boots", "price": 9, "available": false, "description": "awesome boots", "currency": "EUR"}
+  ]
+}
