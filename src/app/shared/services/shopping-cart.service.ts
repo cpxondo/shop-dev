@@ -41,4 +41,9 @@ export class ShoppingCartService {
   getShoppingCart() {
     return this._shoppingCart;
   }
+
+  checkItem(id: number) {
+    return this._shoppingCart.findIndex((itemCart) => itemCart.id === id ) >= 0;
+  }
+
 }

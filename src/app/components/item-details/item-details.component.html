@@ -12,7 +12,7 @@
     </div>
   </div>
   <div class="row">
-    <button type="button" (click)="addToCart(selectedItem)" class="btn btn-primary btn-lg btn-block">Add to Cart</button>
-    <button type="button" class="btn btn-secondary btn-lg btn-block">Delete</button>
+    <button type="button" [disabled]="checkItem(selectedItem.id)" (click)="addToCart(selectedItem)" class="btn btn-primary btn-lg btn-block">Add to Cart</button>
+    <button type="button" [disabled]="!checkItem(selectedItem.id)" (click)="deleteFromCart(selectedItem.id)" class="btn btn-secondary btn-lg btn-block">Delete</button>
   </div>
 </div>

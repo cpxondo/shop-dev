@@ -11,9 +11,17 @@ export class ItemDetailsComponent {
 
   @Input() selectedItem: Item;
 
-  constructor(private shoopingCartService: ShoppingCartService) {}
+  constructor(private shoopingCartService: ShoppingCartService) { }
 
   addToCart(item: Item) {
     this.shoopingCartService.addToCart(item, 1);
+  }
+
+  checkItem(id: number) {
+    return this.shoopingCartService.checkItem(id);
+  }
+
+  deleteFromCart(id: number) {
+    this.shoopingCartService.removeFromCart(id);
   }
 }
