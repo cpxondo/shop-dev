@@ -17,16 +17,16 @@
         <td data-th="Product">
           <div class="row">
             <div class="col-sm-10">
-              <h4 class="nomargin">{{ cartItem.item.name }}</h4>
-              <p>{{ cartItem.item.description }}</p>
+              <h4 class="nomargin">{{ cartItem.name }}</h4>
+              <p>{{ cartItem.description }}</p>
             </div>
           </div>
         </td>
-        <td data-th="Price">{{ cartItem.item.price | currency: cartItem.item.currency}}</td>
+        <td data-th="Price">{{ cartItem.price | currency: cartItem.currency}}</td>
         <td data-th="Quantity">
           <input type="number" class="form-control text-center" [(ngModel)]="cartItem.quantity" value="{{ cartItem.quantity }}">
         </td>
-        <td data-th="Subtotal" class="text-center">{{ cartItem.quantity * cartItem.item.price | currency: cartItem.item.currency }}</td>
+        <td data-th="Subtotal" class="text-center">{{ cartItem.quantity * cartItem.price | currency: cartItem.currency }}</td>
         <td class="actions" data-th="">
           <button class="btn btn-info btn-sm" (click)="refreshCart(cartItem, cartItem.quantity)">Refresh</button>
           <button class="btn btn-danger btn-sm" (click)="deleteFromCart(cartItem)">Delete</button>
@@ -35,12 +35,11 @@
     </tbody>
     <tfoot>
       <tr>
-        <td colspan="3" class="hidden-xs"></td>
-        <td class="h6 text-center"><strong>Total {{ getTotal() | currency : 'JPY'}}</strong></td>
+        <td colspan="5" class="h2 text-right"><strong>Total {{ getTotal() | currency : 'JPY'}}</strong></td>
       </tr>
     </tfoot>
   </table>
   <ng-template #emptyCart>
-      <h1 class="display-6">Empyt Cart</h1>
+      <h1 class="display-6">Empty Cart</h1>
   </ng-template>
 </div>

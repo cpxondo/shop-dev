@@ -1,4 +1,5 @@
 export interface Item {
+  id: number;
   name: string;
   price: number;
   available: boolean;
@@ -6,7 +7,6 @@ export interface Item {
   currency: string;
 }
 
-export interface ItemCart {
-  item: Item;
+export interface ItemCart extends Item {
   quantity: number;
 }

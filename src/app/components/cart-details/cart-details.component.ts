@@ -16,16 +16,16 @@ export class CartDetailsComponent implements OnInit {
   }
 
   refreshCart(item: ItemCart, quantity: number) {
-    this.shoppingCartService.modifyItemQuantity(item.item, quantity);
+    this.shoppingCartService.modifyItemQuantity(item.id, quantity);
   }
 
   deleteFromCart(item: ItemCart) {
-    this.shoppingCartService.removeFromCart(item);
+    this.shoppingCartService.removeFromCart(item.id);
   }
 
   getTotal() {
     return this.cart.reduce((acc: number, cartItem: ItemCart) => {
-      return acc + cartItem.quantity * cartItem.item.price;
+      return acc + cartItem.quantity * cartItem.price;
     }, 0);
   }
 
