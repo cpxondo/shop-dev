@@ -11,6 +11,7 @@ import { ItemDetailsComponent } from './components/item-details/item-details.com
 import { AvailableItemPipe } from './shared/pipes/available-item.pipe';
 import { DisplayFilterPipe } from './shared/pipes/display-filter.pipe';
 import { TranslateContentPipe } from './shared/pipes/translate-content.pipe';
+import { CartDetailsComponent } from './components/cart-details/cart-details.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { TranslateContentPipe } from './shared/pipes/translate-content.pipe';
     ItemDetailsComponent,
     AvailableItemPipe,
     DisplayFilterPipe,
-    TranslateContentPipe
+    TranslateContentPipe,
+    CartDetailsComponent
   ],
   imports: [
     BrowserModule,

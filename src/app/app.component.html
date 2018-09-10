@@ -1,4 +1,5 @@
-<app-navbar (showWelcome)="eventWelcomeVisibility($event)" (showItems)="eventItemsVisibility($event)"></app-navbar>
+<app-navbar (showWelcome)="eventWelcomeVisibility($event)" (showItems)="eventItemsVisibility($event)"  (showCart)="eventCartVisibility($event)"></app-navbar>
 <app-welcome *ngIf="welcomeVisibility"></app-welcome>
 <app-items-list *ngIf="itemsVisibility" (changeItem)="eventItemDetails($event)"></app-items-list>
 <app-item-details *ngIf="detailsVisibility" [selectedItem]="clickedItemDetails"></app-item-details>
+<app-cart-details *ngIf="cartVisibility"></app-cart-details>

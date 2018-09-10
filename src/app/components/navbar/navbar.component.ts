@@ -18,10 +18,12 @@ export class NavbarComponent {
 
   @Output() showItems: EventEmitter<boolean>;
   @Output() showWelcome: EventEmitter<boolean>;
+  @Output() showCart: EventEmitter<boolean>;
 
   constructor(private languageService: LanguageService) {
     this.showItems = new EventEmitter<boolean>();
     this.showWelcome = new EventEmitter<boolean>();
+    this.showCart = new EventEmitter<boolean>();
     this.activeTab = 'Welcome';
     this.languages = [
       { code: 'es', value: 'Castellano'},
@@ -44,6 +46,11 @@ export class NavbarComponent {
    onShowWelcome() {
      this.showWelcome.emit(true);
      this.activeTab = 'Welcome';
+   }
+
+   onShowCart() {
+     this.showCart.emit(true);
+     this.activeTab = 'Cart';
    }
 
 }
