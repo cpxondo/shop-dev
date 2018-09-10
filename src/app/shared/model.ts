@@ -5,3 +5,8 @@ export interface Item {
   description: string;
   currency: string;
 }
+
+export interface ItemCart {
+  item: Item;
+  quantity: number;
+}

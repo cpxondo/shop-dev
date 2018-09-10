@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ItemCart } from '../../shared/model';
+import { ShoppingCartService } from '../../shared/services/shopping-cart.service';
 
 @Component({
   selector: 'app-cart-details',
@@ -7,7 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartDetailsComponent implements OnInit {
 
-  constructor() { }
+  cart: ItemCart[];
+
+  constructor(private shoppingCartService: ShoppingCartService) {
+    this.cart = this.shoppingCartService.getShoppingCart();
+  }
+
+  refreshCart(item: ItemCart, quantity: number) {
+    this.shoppingCartService.modifyItemQuantity(item.item, quantity);
+  }
+
+  deleteFromCart(item: ItemCart) {
+    this.shoppingCartService.removeFromCart(item);
+  }
+
+  getTotal() {
+    return this.cart.reduce((acc: number, cartItem: ItemCart) => {
+      return acc + cartItem.quantity * cartItem.item.price;
+    }, 0);
+  }
 
   ngOnInit() {
   }
