@@ -15,6 +15,7 @@ export class NavbarComponent {
   languages: Locale[];
   selectedLanguage = 'es';
   activeTab: string;
+  numItems: number;
 
   @Output() showItems: EventEmitter<boolean>;
   @Output() showWelcome: EventEmitter<boolean>;
@@ -31,6 +32,7 @@ export class NavbarComponent {
       { code: 'ca', value: 'Valencià'}
     ];
     this.languageService.language = 'es';
+    this.numItems = 0;
    }
 
    onChangeLanguage() {

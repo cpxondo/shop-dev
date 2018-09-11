@@ -12,6 +12,7 @@ import { AvailableItemPipe } from './shared/pipes/available-item.pipe';
 import { DisplayFilterPipe } from './shared/pipes/display-filter.pipe';
 import { TranslateContentPipe } from './shared/pipes/translate-content.pipe';
 import { CartDetailsComponent } from './components/cart-details/cart-details.component';
+import { QuantityItemsComponent } from './components/quantity-items/quantity-items.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CartDetailsComponent } from './components/cart-details/cart-details.com
     AvailableItemPipe,
     DisplayFilterPipe,
     TranslateContentPipe,
-    CartDetailsComponent
+    CartDetailsComponent,
+    QuantityItemsComponent
   ],
   imports: [
     BrowserModule,

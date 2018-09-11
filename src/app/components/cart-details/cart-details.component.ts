@@ -7,7 +7,7 @@ import { ShoppingCartService } from '../../shared/services/shopping-cart.service
   templateUrl: './cart-details.component.html',
   styleUrls: ['./cart-details.component.css']
 })
-export class CartDetailsComponent implements OnInit {
+export class CartDetailsComponent {
 
   cart: ItemCart[];
 
@@ -29,7 +29,12 @@ export class CartDetailsComponent implements OnInit {
     }, 0);
   }
 
-  ngOnInit() {
+  onChangeQuantity(quantity: number, item: ItemCart) {
+    this.cart.map((itemCart) => {
+      if (itemCart.id === item.id) {
+        return itemCart.quantity = quantity;
+      }
+    });
   }
 
 }

@@ -24,7 +24,7 @@
         </td>
         <td data-th="Price">{{ cartItem.price | currency: cartItem.currency}}</td>
         <td data-th="Quantity">
-          <input type="number" class="form-control text-center" [(ngModel)]="cartItem.quantity" value="{{ cartItem.quantity }}">
+          <app-quantity-items [quantity]="cartItem.quantity" (modifyQuantity)="onChangeQuantity($event, cartItem)"></app-quantity-items>
         </td>
         <td data-th="Subtotal" class="text-center">{{ cartItem.quantity * cartItem.price | currency: cartItem.currency }}</td>
         <td class="actions" data-th="">

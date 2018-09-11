@@ -10,11 +10,14 @@ import { ShoppingCartService } from '../../shared/services/shopping-cart.service
 export class ItemDetailsComponent {
 
   @Input() selectedItem: Item;
+  itemQuantity: number;
 
-  constructor(private shoopingCartService: ShoppingCartService) { }
+  constructor(private shoopingCartService: ShoppingCartService) {
+    this.itemQuantity = 1;
+   }
 
   addToCart(item: Item) {
-    this.shoopingCartService.addToCart(item, 1);
+    this.shoopingCartService.addToCart(item, this.itemQuantity);
   }
 
   checkItem(id: number) {
@@ -23,5 +26,9 @@ export class ItemDetailsComponent {
 
   deleteFromCart(id: number) {
     this.shoopingCartService.removeFromCart(id);
+  }
+
+  changeQuantity(quantity: number) {
+    this.itemQuantity = quantity;
   }
 }

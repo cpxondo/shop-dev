@@ -12,7 +12,16 @@
     </div>
   </div>
   <div class="row">
-    <button type="button" [disabled]="checkItem(selectedItem.id)" (click)="addToCart(selectedItem)" class="btn btn-primary btn-lg btn-block">Add to Cart</button>
-    <button type="button" [disabled]="!checkItem(selectedItem.id)" (click)="deleteFromCart(selectedItem.id)" class="btn btn-secondary btn-lg btn-block">Delete</button>
+    <div class="col">
+      <app-quantity-items *ngIf="!checkItem(selectedItem.id)" [quantity]="itemQuantity" (modifyQuantity)="changeQuantity($event)"></app-quantity-items>
+    </div>
+    <div class="col">
+      <button type="button" [disabled]="checkItem(selectedItem.id)" (click)="addToCart(selectedItem)" class="btn btn-primary btn-lg btn-block">Add to Cart</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button type="button" [disabled]="!checkItem(selectedItem.id)" (click)="deleteFromCart(selectedItem.id)" class="btn btn-secondary btn-lg btn-block">Delete</button>
+    </div>
   </div>
 </div>
