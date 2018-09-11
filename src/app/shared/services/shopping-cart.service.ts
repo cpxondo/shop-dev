@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ItemCart, Item } from '../model';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,8 +8,10 @@ import { ItemCart, Item } from '../model';
 export class ShoppingCartService {
 
   private _shoppingCart: ItemCart[];
+  private _items$: BehaviorSubject<ItemCart[]>;
   constructor() {
     this._shoppingCart = [];
+    this._items$ = new BehaviorSubject(this._shoppingCart);
   }
 
   addToCart(item: Item, quantity: number) {
@@ -23,11 +26,13 @@ export class ShoppingCartService {
       available: item.available
     };
     this._shoppingCart.push(newItem);
+    this._items$.next(this._shoppingCart);
   }
 
   removeFromCart(id: number) {
     const index = this._shoppingCart.findIndex((itemCart) => itemCart.id === id );
     this._shoppingCart.splice(index, 1);
+    this._items$.next(this._shoppingCart);
    }
 
   modifyItemQuantity(id: number, quantity: number) {
@@ -36,14 +41,21 @@ export class ShoppingCartService {
         return itemCart.quantity = quantity;
       }
     });
+    this._items$.next(this._shoppingCart);
   }
 
-  getShoppingCart() {
-    return this._shoppingCart;
+  getShoppingCart(): Observable<ItemCart[]> {
+    return this._items$.asObservable();
   }
 
   checkItem(id: number) {
     return this._shoppingCart.findIndex((itemCart) => itemCart.id === id ) >= 0;
+  }
+
+  getTotal(): number {
+    return this._shoppingCart.reduce((acc: number, cartItem: ItemCart) => {
+      return acc + cartItem.quantity * cartItem.price;
+    }, 0);
   }
 
 }

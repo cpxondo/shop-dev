@@ -1,8 +1,8 @@
 <div class="jumbotron">
   <h1 class="display-4">Shopping Cart</h1>
 </div>
-<div class="container">
-	<table id="cart" class="table table-hover table-condensed" *ngIf="cart.length > 0;else emptyCart">
+<div class="container" *ngIf="cart$ | async; let cartItems">
+	<table id="cart" class="table table-hover table-condensed" *ngIf="cartItems.length > 0;else emptyCart">
     <thead>
       <tr>
         <th style="width:50%">Product</th>
@@ -13,7 +13,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let cartItem of cart">
+      <tr *ngFor="let cartItem of cartItems">
         <td data-th="Product">
           <div class="row">
             <div class="col-sm-10">

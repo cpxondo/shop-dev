@@ -1,7 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { LanguageService } from '../../shared/services/language.service';
+import { ShoppingCartService } from '../../shared/services/shopping-cart.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ItemCart } from '../../shared/model';
 interface Locale {
   code: string;
   value: string;
@@ -11,17 +15,19 @@ interface Locale {
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   languages: Locale[];
   selectedLanguage = 'es';
   activeTab: string;
   numItems: number;
+  cartTotal$: Observable<number>;
 
   @Output() showItems: EventEmitter<boolean>;
   @Output() showWelcome: EventEmitter<boolean>;
   @Output() showCart: EventEmitter<boolean>;
 
-  constructor(private languageService: LanguageService) {
+  constructor(private languageService: LanguageService,
+              private shoppingCartService: ShoppingCartService) {
     this.showItems = new EventEmitter<boolean>();
     this.showWelcome = new EventEmitter<boolean>();
     this.showCart = new EventEmitter<boolean>();
@@ -33,6 +39,13 @@ export class NavbarComponent {
     ];
     this.languageService.language = 'es';
     this.numItems = 0;
+   }
+
+   ngOnInit() {
+     this.cartTotal$ = this.shoppingCartService.getShoppingCart().pipe(
+       map(items => items.reduce((acc: number, cartItem: ItemCart) => {
+          return acc + cartItem.quantity;
+       }, 0)));
    }
 
    onChangeLanguage() {

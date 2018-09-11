@@ -1,18 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemCart } from '../../shared/model';
 import { ShoppingCartService } from '../../shared/services/shopping-cart.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-cart-details',
   templateUrl: './cart-details.component.html',
   styleUrls: ['./cart-details.component.css']
 })
-export class CartDetailsComponent {
+export class CartDetailsComponent implements OnInit {
 
-  cart: ItemCart[];
+  cart$: Observable<ItemCart[]>;
 
-  constructor(private shoppingCartService: ShoppingCartService) {
-    this.cart = this.shoppingCartService.getShoppingCart();
+  constructor(private shoppingCartService: ShoppingCartService) { }
+
+  ngOnInit() {
+    this.cart$ = this.shoppingCartService.getShoppingCart();
   }
 
   refreshCart(item: ItemCart, quantity: number) {
@@ -24,17 +27,11 @@ export class CartDetailsComponent {
   }
 
   getTotal() {
-    return this.cart.reduce((acc: number, cartItem: ItemCart) => {
-      return acc + cartItem.quantity * cartItem.price;
-    }, 0);
+    return this.shoppingCartService.getTotal();
   }
 
   onChangeQuantity(quantity: number, item: ItemCart) {
-    this.cart.map((itemCart) => {
-      if (itemCart.id === item.id) {
-        return itemCart.quantity = quantity;
-      }
-    });
+    this.shoppingCartService.modifyItemQuantity(item.id, quantity);
   }
 
 }
