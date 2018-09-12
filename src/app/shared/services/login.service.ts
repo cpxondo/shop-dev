@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +17,9 @@ export class LoginService {
     const passDB = 'cacota';
     if (user === userDB && pass === passDB) {
       this.userLogged = true;
-      return of(true);
+      return of(true).pipe(delay(1000));
     } else {
-      return of(false);
+      return of(false).pipe(delay(1000));
     }
   }
 

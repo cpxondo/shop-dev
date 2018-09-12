@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { LoginService } from '../../shared/services/login.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +24,7 @@ export class LoginComponent implements OnDestroy {
 
   login() {
     this.subscription = this.loginService.checkLogin(this.user, this.pass)
+    .pipe(take(1))
     .subscribe(isSuccess => {
       if (isSuccess) {
         this.router.navigate(['/profile']);

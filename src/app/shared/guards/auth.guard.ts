@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { LoginService } from '../services/login.service';
 
 @Injectable({
@@ -11,12 +10,11 @@ export class AuthGuard implements CanActivate {
     private router: Router,
     private loginService: LoginService) { }
 
-  canActivate(): Observable<boolean> | Promise<boolean> | boolean {
+  canActivate(): boolean {
     return this.checkLogin();
   }
 
   checkLogin() {
-     // Navigate to the login page with extras
      if (this.loginService.checkStatusUser()) {
        return true;
      }
