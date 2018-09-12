@@ -15,4 +15,8 @@ export class RetrieveItemsService {
   getItems(): Observable<Item[]> {
     return this.http.get<Item[]>(this._baseUrl);
   }
+
+  getItem(id: number): Observable<Item> {
+    return this.http.get<Item>(this._baseUrl + '/' + id);
+  }
 }

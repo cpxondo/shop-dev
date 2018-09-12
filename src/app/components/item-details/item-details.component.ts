@@ -1,20 +1,33 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Item } from '../../shared/model';
 import { ShoppingCartService } from '../../shared/services/shopping-cart.service';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
+import { RetrieveItemsService } from '../../shared/services/retrieve-items.service';
 
 @Component({
   selector: 'app-item-details',
   templateUrl: './item-details.component.html',
   styleUrls: ['./item-details.component.css']
 })
-export class ItemDetailsComponent {
+export class ItemDetailsComponent implements OnInit {
 
-  @Input() selectedItem: Item;
+  selectedItem: Item;
   itemQuantity: number;
 
-  constructor(private shoopingCartService: ShoppingCartService) {
-    this.itemQuantity = 1;
-   }
+  constructor(
+    private shoopingCartService: ShoppingCartService,
+    private route: ActivatedRoute,
+    private itemsService: RetrieveItemsService) {
+      this.itemQuantity = 1;
+  }
+
+  ngOnInit() {
+    const id = this.route.snapshot.params.id;
+    this.itemsService.getItem(id).subscribe(data => {
+        this.selectedItem = data;
+    });
+  }
 
   addToCart(item: Item) {
     this.shoopingCartService.addToCart(item, this.itemQuantity);
@@ -31,4 +44,5 @@ export class ItemDetailsComponent {
   changeQuantity(quantity: number) {
     this.itemQuantity = quantity;
   }
+
 }

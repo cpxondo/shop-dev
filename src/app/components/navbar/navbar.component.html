@@ -6,14 +6,14 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li [ngClass]="{'active' : activeTab === 'Welcome'}" class="nav-item">
-        <a class="nav-link" href="#" (click)="onShowWelcome()">Welcome</a>
+      <li class="nav-item">
+        <a class="nav-link" href="#" routerLink="/welcome" routerLinkActive="active">Welcome</a>
       </li>
-      <li [ngClass]="{'active' : activeTab === 'List'}" class="nav-item">
-        <a class="nav-link" href="#" (click)="onShowItems()">List</a>
+      <li class="nav-item">
+        <a class="nav-link" href="#" routerLink="/items" routerLinkActive="active">List</a>
       </li>
-      <li [ngClass]="{'active' : activeTab === 'Cart'}" class="nav-item">
-        <a class="nav-link" href="#" (click)="onShowCart()">Cart<span class="badge badge-light ml-2">{{ cartTotal$ | async }}</span></a>
+      <li class="nav-item">
+        <a class="nav-link" href="#" routerLink="/cart" routerLinkActive="active">Cart<span class="badge badge-light ml-2">{{ cartTotal$ | async }}</span></a>
       </li>
     </ul>
   </div>

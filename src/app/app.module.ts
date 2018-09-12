@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -13,6 +14,15 @@ import { DisplayFilterPipe } from './shared/pipes/display-filter.pipe';
 import { TranslateContentPipe } from './shared/pipes/translate-content.pipe';
 import { CartDetailsComponent } from './components/cart-details/cart-details.component';
 import { QuantityItemsComponent } from './components/quantity-items/quantity-items.component';
+
+const appRoutes: Routes = [
+  { path: '',  redirectTo: 'welcome', pathMatch: 'full'},
+  { path: 'welcome', component: WelcomeComponent},
+  { path: 'items', component: ItemsListComponent },
+  { path: 'items/:id', component: ItemDetailsComponent },
+  { path: 'cart', component: CartDetailsComponent },
+  { path: '**', redirectTo: '', pathMatch: 'full' }
+];
 
 @NgModule({
   declarations: [
@@ -30,7 +40,8 @@ import { QuantityItemsComponent } from './components/quantity-items/quantity-ite
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]

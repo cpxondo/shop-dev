@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Item } from '../../shared/model';
 import { RetrieveItemsService } from '../../shared/services/retrieve-items.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-items-list',
@@ -12,12 +13,11 @@ export class ItemsListComponent implements OnInit {
   removeItems: boolean;
   searchFilter: string;
 
-  @Output() changeItem: EventEmitter<Item>;
-
-  constructor(private itemsService: RetrieveItemsService) {
+  constructor(
+    private itemsService: RetrieveItemsService,
+    private router: Router) {
     this.removeItems = false;
     this.searchFilter = undefined;
-    this.changeItem = new EventEmitter<Item>();
   }
 
   ngOnInit() {
@@ -28,7 +28,7 @@ export class ItemsListComponent implements OnInit {
   }
 
    onChangeItem(item: Item) {
-     this.changeItem.emit(item);
+     this.router.navigate(['/items/' + item.id]);
    }
 
 }
