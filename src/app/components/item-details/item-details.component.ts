@@ -17,16 +17,12 @@ export class ItemDetailsComponent implements OnInit {
 
   constructor(
     private shoopingCartService: ShoppingCartService,
-    private route: ActivatedRoute,
-    private itemsService: RetrieveItemsService) {
+    private route: ActivatedRoute) {
       this.itemQuantity = 1;
   }
 
   ngOnInit() {
-    const id = this.route.snapshot.params.id;
-    this.itemsService.getItem(id).subscribe(data => {
-        this.selectedItem = data;
-    });
+    this.selectedItem = this.route.snapshot.data.item;
   }
 
   addToCart(item: Item) {

@@ -16,15 +16,17 @@ import { CartDetailsComponent } from './components/cart-details/cart-details.com
 import { QuantityItemsComponent } from './components/quantity-items/quantity-items.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { AuthGuard } from './shared/guards/auth.guard';
+import { ItemsResolver } from './shared/services/items-resolver.service';
 
 const appRoutes: Routes = [
   { path: '',  redirectTo: 'welcome', pathMatch: 'full'},
   { path: 'welcome', component: WelcomeComponent},
   { path: 'items', component: ItemsListComponent },
-  { path: 'items/:id', component: ItemDetailsComponent },
+  { path: 'items/:id', component: ItemDetailsComponent, resolve: { item: ItemsResolver },
   { path: 'cart', component: CartDetailsComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile', canActivate: [AuthGuard], component: ProfileComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
@@ -49,7 +51,9 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [
+    ItemsResolver
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
