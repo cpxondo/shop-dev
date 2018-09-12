@@ -3,7 +3,7 @@ import { Resolve, Router, RouterStateSnapshot, ActivatedRouteSnapshot } from '@a
 import { Item } from '../model';
 import { RetrieveItemsService } from './retrieve-items.service';
 import { Observable } from 'rxjs';
-import { take, map } from 'rxjs/operators';
+import { take, map, catchError } from 'rxjs/operators';
 
 @Injectable()
 export class ItemsResolver implements Resolve<Item> {

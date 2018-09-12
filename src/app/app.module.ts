@@ -23,7 +23,7 @@ const appRoutes: Routes = [
   { path: '',  redirectTo: 'welcome', pathMatch: 'full'},
   { path: 'welcome', component: WelcomeComponent},
   { path: 'items', component: ItemsListComponent },
-  { path: 'items/:id', component: ItemDetailsComponent, resolve: { item: ItemsResolver },
+  { path: 'items/:id', component: ItemDetailsComponent, resolve: { item: ItemsResolver }},
   { path: 'cart', component: CartDetailsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'profile', canActivate: [AuthGuard], component: ProfileComponent },
