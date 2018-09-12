@@ -14,6 +14,8 @@ import { DisplayFilterPipe } from './shared/pipes/display-filter.pipe';
 import { TranslateContentPipe } from './shared/pipes/translate-content.pipe';
 import { CartDetailsComponent } from './components/cart-details/cart-details.component';
 import { QuantityItemsComponent } from './components/quantity-items/quantity-items.component';
+import { LoginComponent } from './components/login/login.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const appRoutes: Routes = [
   { path: '',  redirectTo: 'welcome', pathMatch: 'full'},
@@ -21,6 +23,8 @@ const appRoutes: Routes = [
   { path: 'items', component: ItemsListComponent },
   { path: 'items/:id', component: ItemDetailsComponent },
   { path: 'cart', component: CartDetailsComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
@@ -35,7 +39,9 @@ const appRoutes: Routes = [
     DisplayFilterPipe,
     TranslateContentPipe,
     CartDetailsComponent,
-    QuantityItemsComponent
+    QuantityItemsComponent,
+    LoginComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
