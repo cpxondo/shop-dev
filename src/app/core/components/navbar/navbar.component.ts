@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ShoppingCartService } from '../../shared/services/shopping-cart.service';
+import { ShoppingCartService } from '../../../shared/services/shopping-cart.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ItemCart } from '../../shared/model';
+import { ItemCart } from '../../../shared/model';
 import { TranslateService } from '@ngx-translate/core';
 interface Locale {
   code: string;

@@ -7,19 +7,12 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { WelcomeComponent } from './components/welcome/welcome.component';
-import { ItemsListComponent } from './components/items-list/items-list.component';
-import { ItemDetailsComponent } from './components/item-details/item-details.component';
 import { AvailableItemPipe } from './shared/pipes/available-item.pipe';
 import { DisplayFilterPipe } from './shared/pipes/display-filter.pipe';
-import { CartDetailsComponent } from './components/cart-details/cart-details.component';
 import { QuantityItemsComponent } from './components/quantity-items/quantity-items.component';
-import { LoginComponent } from './components/login/login.component';
-import { ProfileComponent } from './components/profile/profile.component';
 import { ItemsResolver } from './shared/services/items-resolver.service';
 import { CoreModule } from './core/core.module';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, appRoutesComponents } from './app-routing.module';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -29,16 +22,10 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    WelcomeComponent,
-    ItemsListComponent,
-    ItemDetailsComponent,
+    appRoutesComponents,
     AvailableItemPipe,
     DisplayFilterPipe,
-    CartDetailsComponent,
     QuantityItemsComponent,
-    LoginComponent,
-    ProfileComponent
   ],
   imports: [
     BrowserModule,

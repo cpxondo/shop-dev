@@ -25,3 +25,12 @@ const appRoutes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+export const appRoutesComponents = [
+  WelcomeComponent,
+  ItemsListComponent,
+  ItemDetailsComponent,
+  CartDetailsComponent,
+  LoginComponent,
+  ProfileComponent
+];
