@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -19,6 +20,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { ItemsResolver } from './shared/services/items-resolver.service';
+import { CoreModule } from './core/core.module';
 
 const appRoutes: Routes = [
   { path: '',  redirectTo: 'welcome', pathMatch: 'full'},
@@ -61,7 +63,9 @@ export function HttpLoaderFactory(http: HttpClient) {
           useFactory: HttpLoaderFactory,
           deps: [HttpClient]
       }
-  })
+    }),
+    ModalModule.forRoot(),
+    CoreModule
   ],
   providers: [
     ItemsResolver

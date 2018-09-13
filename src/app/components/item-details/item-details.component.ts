@@ -1,23 +1,27 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, OnDestroy } from '@angular/core';
 import { Item } from '../../shared/model';
 import { ShoppingCartService } from '../../shared/services/shopping-cart.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
-import { RetrieveItemsService } from '../../shared/services/retrieve-items.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-item-details',
   templateUrl: './item-details.component.html',
   styleUrls: ['./item-details.component.css']
 })
-export class ItemDetailsComponent implements OnInit {
+export class ItemDetailsComponent implements OnInit, OnDestroy {
 
   selectedItem: Item;
   itemQuantity: number;
+  modalRef: BsModalRef;
+  subscription: Subscription;
 
   constructor(
     private shoopingCartService: ShoppingCartService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private modalService: BsModalService,
+    private router: Router) {
       this.itemQuantity = 1;
   }
 
@@ -25,9 +29,21 @@ export class ItemDetailsComponent implements OnInit {
     this.selectedItem = this.route.snapshot.data.item;
   }
 
-  addToCart(item: Item) {
-    this.shoopingCartService.addToCart(item, this.itemQuantity);
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
+
+  addToCart(item: Item, template: TemplateRef<any>) {
+    this.shoopingCartService.addToCart(item, this.itemQuantity);
+    this.modalRef = this.modalService.show(template);
+    this.subscription = this.modalService.onHide.subscribe(() => {
+      console.log('modal closed');
+      this.router.navigate(['/cart']);
+    });
+  }
+
 
   checkItem(id: number) {
     return this.shoopingCartService.checkItem(id);
