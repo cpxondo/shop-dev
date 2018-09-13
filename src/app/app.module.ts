@@ -2,7 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -11,7 +13,6 @@ import { ItemsListComponent } from './components/items-list/items-list.component
 import { ItemDetailsComponent } from './components/item-details/item-details.component';
 import { AvailableItemPipe } from './shared/pipes/available-item.pipe';
 import { DisplayFilterPipe } from './shared/pipes/display-filter.pipe';
-import { TranslateContentPipe } from './shared/pipes/translate-content.pipe';
 import { CartDetailsComponent } from './components/cart-details/cart-details.component';
 import { QuantityItemsComponent } from './components/quantity-items/quantity-items.component';
 import { LoginComponent } from './components/login/login.component';
@@ -30,6 +31,11 @@ const appRoutes: Routes = [
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +45,6 @@ const appRoutes: Routes = [
     ItemDetailsComponent,
     AvailableItemPipe,
     DisplayFilterPipe,
-    TranslateContentPipe,
     CartDetailsComponent,
     QuantityItemsComponent,
     LoginComponent,
@@ -49,7 +54,14 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+  })
   ],
   providers: [
     ItemsResolver

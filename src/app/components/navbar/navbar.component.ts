@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Output } from '@angular/core';
-import { EventEmitter } from '@angular/core';
-import { LanguageService } from '../../shared/services/language.service';
 import { ShoppingCartService } from '../../shared/services/shopping-cart.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ItemCart } from '../../shared/model';
+import { TranslateService } from '@ngx-translate/core';
 interface Locale {
   code: string;
   value: string;
@@ -21,14 +19,14 @@ export class NavbarComponent implements OnInit {
   cartTotal$: Observable<number>;
 
   constructor(
-    private languageService: LanguageService,
+    private translate: TranslateService,
     private shoppingCartService: ShoppingCartService) {
     this.languages = [
       { code: 'es', value: 'Castellano'},
       { code: 'en', value: 'English'},
-      { code: 'ca', value: 'Valencià'}
+      { code: 'ca', value: 'Valencià'},
+      { code: 'de', value: 'Deutsch'}
     ];
-    this.languageService.language = 'es';
    }
 
    ngOnInit() {
@@ -40,7 +38,7 @@ export class NavbarComponent implements OnInit {
 
    onChangeLanguage() {
      console.log(this.selectedLanguage, 'selected locale');
-     this.languageService.language = this.selectedLanguage;
+     this.translate.use(this.selectedLanguage);
    }
 
 }

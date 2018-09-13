@@ -1,5 +1,5 @@
 import { TranslateContentPipe } from './translate-content.pipe';
-import { TranslateService } from '../services/translate.service.js';
+import { LanguageService } from '../services/language.service';
 
 
 describe('TranslateContentPipe', () => {

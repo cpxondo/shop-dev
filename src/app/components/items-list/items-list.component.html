@@ -1,15 +1,15 @@
 <div class="jumbotron">
-  <h1 class="display-4">{{ 'items-list' | translateContent }}</h1>
+  <h1 class="display-4">{{ 'items-list' | translate }}</h1>
 </div>
 <div class="container">
   <div class="input-group mb-3">
       <div class="input-group-append">
         <div class="input-group-text">
-            <label for="hideItems">{{ 'hide-unavailable' | translateContent }}</label>
+            <label for="hideItems">{{ 'hide-unavailable' | translate }}</label>
             <input id="hideItems" [(ngModel)]="removeItems" type="checkbox" >
         </div>
       </div>
-      <input type="text" class="form-control" placeholder="{{'search-text' | translateContent }}" [(ngModel)]="searchFilter">
+      <input type="text" class="form-control" placeholder="{{'search-text' | translate }}" [(ngModel)]="searchFilter">
     </div>
   <table class="table">
     <thead class="thead-dark">

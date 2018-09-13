@@ -1,5 +1,3 @@
 <router-outlet>
-  <app-navbar (showWelcome)="eventWelcomeVisibility($event)" (showItems)="eventItemsVisibility($event)"  (showCart)="eventCartVisibility($event)"></app-navbar>
+  <app-navbar></app-navbar>
 </router-outlet>
-<!-- <app-items-list *ngIf="itemsVisibility" (changeItem)="eventItemDetails($event)"></app-items-list>
-<app-item-details *ngIf="detailsVisibility" [selectedItem]="clickedItemDetails"></app-item-details>-->

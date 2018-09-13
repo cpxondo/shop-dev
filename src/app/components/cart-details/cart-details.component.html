@@ -1,5 +1,5 @@
 <div class="jumbotron">
-  <h1 class="display-4">Shopping Cart</h1>
+  <h1 translate class="display-4">shopping-cart</h1>
 </div>
 <div class="container" *ngIf="cart$ | async; let cartItems">
 	<table id="cart" class="table table-hover table-condensed" *ngIf="cartItems.length > 0;else emptyCart">
