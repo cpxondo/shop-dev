@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -18,20 +17,9 @@ import { CartDetailsComponent } from './components/cart-details/cart-details.com
 import { QuantityItemsComponent } from './components/quantity-items/quantity-items.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { AuthGuard } from './shared/guards/auth.guard';
 import { ItemsResolver } from './shared/services/items-resolver.service';
 import { CoreModule } from './core/core.module';
-
-const appRoutes: Routes = [
-  { path: '',  redirectTo: 'welcome', pathMatch: 'full'},
-  { path: 'welcome', component: WelcomeComponent},
-  { path: 'items', component: ItemsListComponent },
-  { path: 'items/:id', component: ItemDetailsComponent, resolve: { item: ItemsResolver }},
-  { path: 'cart', component: CartDetailsComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'profile', canActivate: [AuthGuard], component: ProfileComponent },
-  { path: '**', redirectTo: '', pathMatch: 'full' }
-];
+import { AppRoutingModule } from './app-routing.module';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -56,7 +44,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes),
+    AppRoutingModule,
     TranslateModule.forRoot({
       loader: {
           provide: TranslateLoader,
