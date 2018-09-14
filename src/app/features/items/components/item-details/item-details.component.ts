@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef, OnDestroy } from '@angular/core';
-import { Item } from '../../shared/model';
-import { ShoppingCartService } from '../../shared/services/shopping-cart.service';
+import { Item } from '../../../../shared/model';
+import { ShoppingCartService } from '../../../../shared/services/shopping-cart.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
@@ -39,7 +39,6 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
     this.shoopingCartService.addToCart(item, this.itemQuantity);
     this.modalRef = this.modalService.show(template);
     this.subscription = this.modalService.onHide.subscribe(() => {
-      console.log('modal closed');
       this.router.navigate(['/cart']);
     });
   }

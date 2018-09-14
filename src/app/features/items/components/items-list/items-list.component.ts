@@ -1,6 +1,6 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
-import { Item } from '../../shared/model';
-import { RetrieveItemsService } from '../../shared/services/retrieve-items.service';
+import { Component, OnInit } from '@angular/core';
+import { Item } from '../../../../shared/model';
+import { RetrieveItemsService } from '../../../../shared/services/retrieve-items.service';
 import { Router } from '@angular/router';
 
 @Component({

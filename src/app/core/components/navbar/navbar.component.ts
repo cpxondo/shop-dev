@@ -27,18 +27,17 @@ export class NavbarComponent implements OnInit {
       { code: 'ca', value: 'Valencià'},
       { code: 'de', value: 'Deutsch'}
     ];
-   }
+  }
 
-   ngOnInit() {
-     this.cartTotal$ = this.shoppingCartService.getShoppingCart().pipe(
-       map(items => items.reduce((acc: number, cartItem: ItemCart) => {
-          return acc + cartItem.quantity;
-       }, 0)));
-   }
+  ngOnInit() {
+    this.cartTotal$ = this.shoppingCartService.getShoppingCart().pipe(
+      map(items => items.reduce((acc: number, cartItem: ItemCart) => {
+        return acc + cartItem.quantity;
+      }, 0)));
+  }
 
-   onChangeLanguage() {
-     console.log(this.selectedLanguage, 'selected locale');
-     this.translate.use(this.selectedLanguage);
-   }
+  onChangeLanguage() {
+    this.translate.use(this.selectedLanguage);
+  }
 
 }

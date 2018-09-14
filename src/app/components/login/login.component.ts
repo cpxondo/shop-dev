@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { LoginService } from '../../shared/services/login.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -20,7 +20,7 @@ export class LoginComponent implements OnDestroy {
     private loginService: LoginService,
     private router: Router) {
       this.loginResult = '';
-     }
+  }
 
   login() {
     this.subscription = this.loginService.checkLogin(this.user, this.pass)
@@ -38,7 +38,6 @@ export class LoginComponent implements OnDestroy {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
-    console.log('Destroy!');
   }
 
 }
