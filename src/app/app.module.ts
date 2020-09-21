@@ -9,7 +9,6 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { AppRoutingModule, appRoutesComponents } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
-import { TranslateContentPipe } from './shared/pipes/translate-content.pipe';
 
 @NgModule({
   declarations: [
@@ -24,8 +23,7 @@ import { TranslateContentPipe } from './shared/pipes/translate-content.pipe';
     ModalModule.forRoot(),
     CoreModule,
     SharedModule,
-    TranslateModule,
-    TranslateContentPipe
+    TranslateModule
   ],
   bootstrap: [AppComponent]
 })
