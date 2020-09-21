@@ -24,11 +24,11 @@ export function HttpLoaderFactory(http: HttpClient) {
           useFactory: HttpLoaderFactory,
           deps: [HttpClient]
       }
-    }),
-    TranslateContentPipe
+    })
   ],
   declarations: [
-    NavbarComponent
+    NavbarComponent,
+    TranslateContentPipe
   ],
   exports: [
     NavbarComponent
