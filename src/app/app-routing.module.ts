@@ -9,7 +9,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 const appRoutes: Routes = [
   { path: '',  redirectTo: 'welcome', pathMatch: 'full'},
   { path: 'welcome', component: WelcomeComponent},
-  { path: 'items', loadChildren: './features/items/items.module#ItemsModule' },
+  { path: 'items', loadChildren: () => import('./features/items/items.module').then(m => m.ItemsModule) },
   { path: 'cart', component: CartDetailsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'profile', canActivate: [AuthGuard], component: ProfileComponent },
