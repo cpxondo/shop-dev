@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
+import { Router, ActivatedRouteSnapshot } from '@angular/router';
 import { Item } from '../model';
 import { RetrieveItemsService } from './retrieve-items.service';
 import { Observable, of } from 'rxjs';
@@ -8,7 +8,7 @@ import { take, map, catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class ItemsResolver implements Resolve<Item> {
+export class ItemsResolver  {
 
   constructor(private itemService: RetrieveItemsService, private router: Router) {}
 
