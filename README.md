@@ -1,7 +1,7 @@
 # ShopDev
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.5.
-Actual version of project is: Angular: 17.3.11
+Actual version of project is: Angular: 18.2.13
 
 ## Development server
 
