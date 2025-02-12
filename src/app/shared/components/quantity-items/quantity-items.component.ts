@@ -1,9 +1,10 @@
 import { Component, OnInit, Input, EventEmitter, Output, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
-  selector: 'app-quantity-items',
-  templateUrl: './quantity-items.component.html',
-  styleUrls: ['./quantity-items.component.css']
+    selector: 'app-quantity-items',
+    templateUrl: './quantity-items.component.html',
+    styleUrls: ['./quantity-items.component.css'],
+    standalone: false
 })
 export class QuantityItemsComponent {
 

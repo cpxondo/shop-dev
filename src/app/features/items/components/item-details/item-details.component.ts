@@ -6,9 +6,10 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-item-details',
-  templateUrl: './item-details.component.html',
-  styleUrls: ['./item-details.component.css']
+    selector: 'app-item-details',
+    templateUrl: './item-details.component.html',
+    styleUrls: ['./item-details.component.css'],
+    standalone: false
 })
 export class ItemDetailsComponent implements OnInit, OnDestroy {
 

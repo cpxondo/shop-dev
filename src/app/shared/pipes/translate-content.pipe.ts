@@ -5,8 +5,9 @@ import { ca } from '../translations/ca.js';
 import { LanguageService } from '../services/language.service';
 
 @Pipe({
-  name: 'translateContent',
-  pure: false
+    name: 'translateContent',
+    pure: false,
+    standalone: false
 })
 export class TranslateContentPipe implements PipeTransform {
 

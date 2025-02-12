@@ -4,9 +4,10 @@ import { RetrieveItemsService } from '../../../../shared/services/retrieve-items
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-items-list',
-  templateUrl: './items-list.component.html',
-  styleUrls: ['./items-list.component.css']
+    selector: 'app-items-list',
+    templateUrl: './items-list.component.html',
+    styleUrls: ['./items-list.component.css'],
+    standalone: false
 })
 export class ItemsListComponent implements OnInit {
   items: Item[];
