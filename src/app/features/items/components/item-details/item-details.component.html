@@ -1,38 +1,42 @@
-<div class="container" *ngIf="selectedItem != undefined">
-  <ng-template #template>
-    <div class="modal-header">
-      <h4 class="modal-title pull-left">Purchased!</h4>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-        <span aria-hidden="true">&times;</span>
-      </button>
+@if (selectedItem != undefined) {
+  <div class="container">
+    <ng-template #template>
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Purchased!</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Item <strong>{{ selectedItem.name | uppercase }}</strong> has been added to your cart!
+      </div>
+    </ng-template>
+    <div class="card-group">
+      <div class="card">
+        <img class="card-img-top img-thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Comic_image_missing.svg" alt="Card image cap">
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ selectedItem.name }}</h5>
+          <p class="card-text">{{ selectedItem.description }}</p>
+          <p class="card-text"><small class="text-muted">{{ selectedItem.price | currency: selectedItem.currency }}</small></p>
+        </div>
+      </div>
     </div>
-    <div class="modal-body">
-      Item <strong>{{ selectedItem.name | uppercase }}</strong> has been added to your cart!
+    <div class="row">
+      <div class="col">
+        @if (!checkItem(selectedItem.id)) {
+          <app-quantity-items [quantity]="itemQuantity" (modifyQuantity)="changeQuantity($event)"></app-quantity-items>
+        }
+      </div>
+      <div class="col">
+        <button type="button" [disabled]="checkItem(selectedItem.id)" (click)="addToCart(selectedItem, template)" class="btn btn-primary btn-lg btn-block">Add to Cart</button>
+      </div>
     </div>
-  </ng-template>
-  <div class="card-group">
-    <div class="card">
-      <img class="card-img-top img-thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Comic_image_missing.svg" alt="Card image cap">
-    </div>
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">{{ selectedItem.name }}</h5>
-        <p class="card-text">{{ selectedItem.description }}</p>
-        <p class="card-text"><small class="text-muted">{{ selectedItem.price | currency: selectedItem.currency }}</small></p>
+    <div class="row">
+      <div class="col">
+        <button type="button" [disabled]="!checkItem(selectedItem.id)" (click)="deleteFromCart(selectedItem.id)" class="btn btn-secondary btn-lg btn-block">Delete</button>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col">
-      <app-quantity-items *ngIf="!checkItem(selectedItem.id)" [quantity]="itemQuantity" (modifyQuantity)="changeQuantity($event)"></app-quantity-items>
-    </div>
-    <div class="col">
-      <button type="button" [disabled]="checkItem(selectedItem.id)" (click)="addToCart(selectedItem, template)" class="btn btn-primary btn-lg btn-block">Add to Cart</button>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <button type="button" [disabled]="!checkItem(selectedItem.id)" (click)="deleteFromCart(selectedItem.id)" class="btn btn-secondary btn-lg btn-block">Delete</button>
-    </div>
-  </div>
-</div>
+}

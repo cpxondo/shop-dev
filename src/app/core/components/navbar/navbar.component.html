@@ -22,7 +22,9 @@
   </div>
   <div class="dropdown right">
     <select class="form-control" id="selectLanguage" [(ngModel)]="selectedLanguage" (change)="onChangeLanguage()">
-      <option *ngFor="let lang of languages" [ngValue]="lang.code">{{ lang.value }}</option>
+      @for (lang of languages; track lang) {
+        <option [ngValue]="lang.code">{{ lang.value }}</option>
+      }
     </select>
   </div>
 </nav>

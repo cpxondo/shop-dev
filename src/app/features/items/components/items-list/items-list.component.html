@@ -3,14 +3,14 @@
 </div>
 <div class="container">
   <div class="input-group mb-3">
-      <div class="input-group-append">
-        <div class="input-group-text">
-            <label for="hideItems">{{ 'hide-unavailable' | translate }}</label>
-            <input id="hideItems" [(ngModel)]="removeItems" type="checkbox" >
-        </div>
+    <div class="input-group-append">
+      <div class="input-group-text">
+        <label for="hideItems">{{ 'hide-unavailable' | translate }}</label>
+        <input id="hideItems" [(ngModel)]="removeItems" type="checkbox" >
       </div>
-      <input type="text" class="form-control" placeholder="{{'search-text' | translate }}" [(ngModel)]="searchFilter">
     </div>
+    <input type="text" class="form-control" placeholder="{{'search-text' | translate }}" [(ngModel)]="searchFilter">
+  </div>
   <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -22,12 +22,14 @@
     </thead>
     <tbody>
       <!-- <tr [ngClass]="{'bg-secondary': !item.available}" [ngStyle]="{'display' : item.available | availableItem: removeItems}" *ngFor="let item of items" (click)="onChangeItem(item)">-->
-      <tr [ngClass]="{'bg-secondary': !item.available}" *ngFor="let item of items | displayFilter : removeItems : searchFilter" (click)="onChangeItem(item)">
-        <td>{{ item.name }}</td>
-        <td>{{ item.price | currency: item.currency }}</td>
-        <td>{{ item.description }}</td>
-        <td>{{ item.available }}</td>
-      </tr>
+      @for (item of items | displayFilter : removeItems : searchFilter; track item) {
+        <tr [ngClass]="{'bg-secondary': !item.available}" (click)="onChangeItem(item)">
+          <td>{{ item.name }}</td>
+          <td>{{ item.price | currency: item.currency }}</td>
+          <td>{{ item.description }}</td>
+          <td>{{ item.available }}</td>
+        </tr>
+      }
     </tbody>
   </table>
 </div>

@@ -1,45 +1,50 @@
 <div class="jumbotron">
   <h1 translate class="display-4">shopping-cart</h1>
 </div>
-<div class="container" *ngIf="cart$ | async; let cartItems">
-	<table id="cart" class="table table-hover table-condensed" *ngIf="cartItems.length > 0;else emptyCart">
-    <thead>
-      <tr>
-        <th style="width:50%">Product</th>
-        <th style="width:10%">Price</th>
-        <th style="width:8%">Quantity</th>
-        <th style="width:22%" class="text-center">Subtotal</th>
-        <th style="width:10%"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let cartItem of cartItems">
-        <td data-th="Product">
-          <div class="row">
-            <div class="col-sm-10">
-              <h4 class="nomargin">{{ cartItem.name }}</h4>
-              <p>{{ cartItem.description }}</p>
-            </div>
-          </div>
-        </td>
-        <td data-th="Price">{{ cartItem.price | currency: cartItem.currency}}</td>
-        <td data-th="Quantity">
-          <app-quantity-items [quantity]="cartItem.quantity" (modifyQuantity)="onChangeQuantity($event, cartItem)"></app-quantity-items>
-        </td>
-        <td data-th="Subtotal" class="text-center">{{ cartItem.quantity * cartItem.price | currency: cartItem.currency }}</td>
-        <td class="actions" data-th="">
-          <button class="btn btn-info btn-sm" (click)="refreshCart(cartItem, cartItem.quantity)">Refresh</button>
-          <button class="btn btn-danger btn-sm" (click)="deleteFromCart(cartItem)">Delete</button>
-        </td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr>
-        <td colspan="5" class="h2 text-right"><strong>Total {{ getTotal() | currency : 'JPY'}}</strong></td>
-      </tr>
-    </tfoot>
-  </table>
-  <ng-template #emptyCart>
+@if (cart$ | async; as cartItems) {
+  <div class="container">
+    @if (cartItems.length > 0) {
+      <table id="cart" class="table table-hover table-condensed">
+        <thead>
+          <tr>
+            <th style="width:50%">Product</th>
+            <th style="width:10%">Price</th>
+            <th style="width:8%">Quantity</th>
+            <th style="width:22%" class="text-center">Subtotal</th>
+            <th style="width:10%"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (cartItem of cartItems; track cartItem) {
+            <tr>
+              <td data-th="Product">
+                <div class="row">
+                  <div class="col-sm-10">
+                    <h4 class="nomargin">{{ cartItem.name }}</h4>
+                    <p>{{ cartItem.description }}</p>
+                  </div>
+                </div>
+              </td>
+              <td data-th="Price">{{ cartItem.price | currency: cartItem.currency}}</td>
+              <td data-th="Quantity">
+                <app-quantity-items [quantity]="cartItem.quantity" (modifyQuantity)="onChangeQuantity($event, cartItem)"></app-quantity-items>
+              </td>
+              <td data-th="Subtotal" class="text-center">{{ cartItem.quantity * cartItem.price | currency: cartItem.currency }}</td>
+              <td class="actions" data-th="">
+                <button class="btn btn-info btn-sm" (click)="refreshCart(cartItem, cartItem.quantity)">Refresh</button>
+                <button class="btn btn-danger btn-sm" (click)="deleteFromCart(cartItem)">Delete</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="5" class="h2 text-right"><strong>Total {{ getTotal() | currency : 'JPY'}}</strong></td>
+          </tr>
+        </tfoot>
+      </table>
+    } @else {
       <h1 class="display-6">Empty Cart</h1>
-  </ng-template>
-</div>
+    }
+  </div>
+}
