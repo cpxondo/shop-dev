@@ -1,7 +1,7 @@
 # ShopDev
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.5.
-Actual version of project is: Angular: 20.3.16
+Actual version of project is: Angular: 21.1.4
 
 ## Development server
 
@@ -10,7 +10,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Mock server with data
 
-Run `npm run mock:server` to enable a inline server with mocked data
+Run `npm run mock:server` to enable an inline server with mocked data
 
 
 ## Code scaffolding
