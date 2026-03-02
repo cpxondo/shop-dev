@@ -56,7 +56,7 @@
     "karma-firefox-launcher": "^2.1.2",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.7.0",
-    "karma-webpack": "^4.0.2",
+    "karma-webpack": "^5.0.1",
     "ts-node": "~5.0.1",
     "tslint": "~6.1.3"
   }
