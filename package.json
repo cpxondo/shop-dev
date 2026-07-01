@@ -45,7 +45,7 @@
     "@cypress/schematic": "^5.0.0",
     "@types/jest": "^30.0.0",
     "@types/node": "^18.17.5",
-    "cypress": "^15.17.0",
+    "cypress": "^15.18.0",
     "jest": "^30.4.2",
     "jest-environment-jsdom": "^30.4.1",
     "json-server": "^0.17.3",
