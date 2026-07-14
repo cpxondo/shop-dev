@@ -18,7 +18,10 @@
             },
             "index": "src/index.html",
             "polyfills": [
-              "src/polyfills.ts"
+              "src/polyfills.ts",
+              "zone.js",
+              "zone.js/testing",
+              "zone.js/plugins/vitest-patch"
             ],
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
@@ -41,6 +44,11 @@
             "browser": "src/main.ts"
           },
           "configurations": {
+            "development": {
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -75,10 +83,9 @@
           }
         },
         "test": {
-          "builder": "@angular-builders/jest:run",
+          "builder": "@angular/build:unit-test",
           "options": {
-            "tsConfig": "src/tsconfig.spec.json",
-            "scripts": []
+            "tsConfig": "src/tsconfig.spec.json"
           }
         },
         "cypress-run": {
