@@ -37,17 +37,13 @@
     "zone.js": "^0.15.0"
   },
   "devDependencies": {
-    "@angular-builders/jest": "^21.0.4",
     "@angular/build": "^21.2.19",
     "@angular/cli": "^21.2.19",
     "@angular/language-service": "^21.2.18",
     "@angular/localize": "^21.2.18",
     "@cypress/schematic": "^5.0.0",
-    "@types/jest": "^30.0.0",
     "@types/node": "^18.17.5",
     "cypress": "^15.18.0",
-    "jest": "^30.4.2",
-    "jest-environment-jsdom": "^30.4.1",
     "json-server": "^0.17.3",
     "ts-node": "~5.0.1",
     "tslint": "~6.1.3"
