@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
+import { TranslateModule } from '@ngx-translate/core';
 import { ItemsListComponent } from './items-list.component';
 
 describe('ItemsListComponent', () => {
@@ -8,7 +8,10 @@ describe('ItemsListComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ItemsListComponent ]
+      declarations: [ ItemsListComponent ],
+      imports: [
+        TranslateModule.forRoot()
+      ]
     })
     .compileComponents();
   }));

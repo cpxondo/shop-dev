@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
+import { FormsModule } from '@angular/forms';
 import { QuantityItemsComponent } from './quantity-items.component';
 
 describe('QuantityItemsComponent', () => {
@@ -8,7 +8,8 @@ describe('QuantityItemsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ QuantityItemsComponent ]
+      declarations: [ QuantityItemsComponent ],
+      imports: [ FormsModule ]
     })
     .compileComponents();
   }));
