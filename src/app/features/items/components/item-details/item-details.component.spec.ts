@@ -1,11 +1,10 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { ActivatedRoute, convertToParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateModule } from '@ngx-translate/core';
+import { BsModalService } from 'ngx-bootstrap/modal';
 import { ItemDetailsComponent } from './item-details.component';
-import { BrowserTestingModule } from '@angular/platform-browser/testing';
-import { ModalModule } from 'ngx-bootstrap/modal';
-import { of } from 'rxjs';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('ItemDetailsComponent', () => {
   let component: ItemDetailsComponent;
@@ -15,8 +14,6 @@ describe('ItemDetailsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ItemDetailsComponent ],
       imports: [
-        BrowserTestingModule,
-        ModalModule.forRoot(),
         RouterTestingModule,
         TranslateModule.forRoot()
       ],
@@ -25,16 +22,21 @@ describe('ItemDetailsComponent', () => {
           provide: ActivatedRoute,
           useValue: {
             snapshot: {
-              paramMap: convertToParamMap({ id: '1' }),
-              data: { item: { id: 1, name: 'Test item', price: 10 } }  // 👈 afegit
-            },
-            paramMap: of(convertToParamMap({ id: '1' })),
-            data: of({ item: { id: 1, name: 'Test item', price: 10 } })  // 👈 afegit
+              data: {
+                item: {
+                  id: 1,
+                  name: 'Test item',
+                  price: 10
+                }
+              }
+            }
           }
-        }
-      ]
+        },
+        { provide: BsModalService, useValue: { show: () => ({}), hide: () => {}, onHide: { subscribe: () => {} } } }
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
