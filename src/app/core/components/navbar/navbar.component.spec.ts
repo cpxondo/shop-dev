@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter } from '@angular/router';
 import { NavbarComponent } from './navbar.component';
 
 describe('NavbarComponent', () => {
@@ -13,8 +13,10 @@ describe('NavbarComponent', () => {
       declarations: [ NavbarComponent ],
       imports: [
         FormsModule,
-        RouterTestingModule,
         TranslateModule.forRoot()
+      ],
+      providers: [
+        provideRouter([])
       ]
     })
     .compileComponents();

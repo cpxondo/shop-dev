@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
+import { ActivatedRoute, provideRouter } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { ItemDetailsComponent } from './item-details.component';
@@ -14,10 +13,10 @@ describe('ItemDetailsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ItemDetailsComponent ],
       imports: [
-        RouterTestingModule,
         TranslateModule.forRoot()
       ],
       providers: [
+        provideRouter([]),
         {
           provide: ActivatedRoute,
           useValue: {
