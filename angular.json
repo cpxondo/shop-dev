@@ -18,10 +18,7 @@
             },
             "index": "src/index.html",
             "polyfills": [
-              "src/polyfills.ts",
-              "zone.js",
-              "zone.js/testing",
-              "zone.js/plugins/vitest-patch"
+              "src/polyfills.ts"
             ],
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
@@ -48,6 +45,13 @@
               "optimization": false,
               "sourceMap": true,
               "extractLicenses": false
+            },
+            "test": {
+              "polyfills": [
+                "zone.js",
+                "zone.js/testing",
+                "zone.js/plugins/vitest-patch"
+              ]
             },
             "production": {
               "fileReplacements": [
@@ -85,6 +89,7 @@
         "test": {
           "builder": "@angular/build:unit-test",
           "options": {
+            "buildTarget": "shop-dev:build:test",
             "tsConfig": "src/tsconfig.spec.json"
           }
         },
@@ -117,6 +122,15 @@
             "production": {
               "devServerTarget": "shop-dev:serve:production"
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
           }
         }
       }

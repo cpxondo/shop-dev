@@ -15,8 +15,7 @@ export class ShoppingCartService {
   }
 
   addToCart(item: Item, quantity: number) {
-    let newItem: ItemCart;
-    newItem = {
+    const newItem: ItemCart = {
       id: item.id,
       name: item.name,
       description: item.description,

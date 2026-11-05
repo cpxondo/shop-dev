@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Item } from '../../../../shared/model';
 import { RetrieveItemsService } from '../../../../shared/services/retrieve-items.service';
 import { Router } from '@angular/router';
@@ -7,18 +7,17 @@ import { Router } from '@angular/router';
     selector: 'app-items-list',
     templateUrl: './items-list.component.html',
     styleUrls: ['./items-list.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ItemsListComponent implements OnInit {
-  items: Item[];
-  removeItems: boolean;
-  searchFilter: string;
+  items: Item[] = [];
+  removeItems = false;
+  searchFilter?: string;
 
   constructor(
     private itemsService: RetrieveItemsService,
     private router: Router) {
-    this.removeItems = false;
-    this.searchFilter = undefined;
   }
 
   ngOnInit() {

@@ -5,8 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class LanguageService {
 
-  private _language: string;
-  constructor() { }
+  private _language = 'es';
 
   public get language(): string {
     return this._language;

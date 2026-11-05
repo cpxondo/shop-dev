@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { LoginService } from '../../shared/services/login.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -8,19 +8,19 @@ import { take } from 'rxjs/operators';
     selector: 'app-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class LoginComponent implements OnDestroy {
 
-  user: string;
-  pass: string;
-  loginResult: string;
-  subscription: Subscription;
+  user = '';
+  pass = '';
+  loginResult = '';
+  subscription?: Subscription;
 
   constructor(
     private loginService: LoginService,
     private router: Router) {
-      this.loginResult = '';
   }
 
   login() {

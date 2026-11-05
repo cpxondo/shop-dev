@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ItemCart } from '../../shared/model';
 import { ShoppingCartService } from '../../shared/services/shopping-cart.service';
 import { Observable } from 'rxjs';
@@ -7,11 +7,12 @@ import { Observable } from 'rxjs';
     selector: 'app-cart-details',
     templateUrl: './cart-details.component.html',
     styleUrls: ['./cart-details.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class CartDetailsComponent implements OnInit {
 
-  cart$: Observable<ItemCart[]>;
+  cart$!: Observable<ItemCart[]>;
 
   constructor(private shoppingCartService: ShoppingCartService) { }
 

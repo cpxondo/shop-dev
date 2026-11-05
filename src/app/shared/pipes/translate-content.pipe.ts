@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { en } from '../translations/en.js';
-import { es } from '../translations/es.js';
-import { ca } from '../translations/ca.js';
+import { en } from '../translations/en';
+import { es } from '../translations/es';
+import { ca } from '../translations/ca';
 import { LanguageService } from '../services/language.service';
 
 @Pipe({
@@ -11,7 +11,7 @@ import { LanguageService } from '../services/language.service';
 })
 export class TranslateContentPipe implements PipeTransform {
 
-  translations: Map<string, object>;
+  translations: Map<string, Record<string, string>>;
   constructor(private languagesService: LanguageService) {
     this.translations = new Map();
     this.translations.set('en', en);
@@ -20,12 +20,11 @@ export class TranslateContentPipe implements PipeTransform {
   }
 
   transform(value: string): string {
-    const translation = value;
     const repo = this.translations.get(this.languagesService.language);
 
     if (repo) {
-      return repo[value];
+      return repo[value] ?? value;
     }
-    return translation;
+    return value;
   }
 }

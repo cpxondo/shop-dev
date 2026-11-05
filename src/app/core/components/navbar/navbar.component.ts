@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ShoppingCartService } from '../../../shared/services/shopping-cart.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -12,12 +12,13 @@ interface Locale {
     selector: 'app-navbar',
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class NavbarComponent implements OnInit {
   languages: Locale[];
   selectedLanguage = 'es';
-  cartTotal$: Observable<number>;
+  cartTotal$!: Observable<number>;
 
   constructor(
     private translate: TranslateService,

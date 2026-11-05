@@ -1,13 +1,14 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "esModuleInterop": true,
+    "skipLibCheck": true,
     "sourceMap": true,
     "declaration": false,
     "module": "esnext",
     "moduleResolution": "bundler",
+    "strict": true,
     "experimentalDecorators": true,
     "target": "ES2022",
     "useDefineForClassFields": false

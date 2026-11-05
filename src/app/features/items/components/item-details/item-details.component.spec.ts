@@ -5,6 +5,8 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { ItemDetailsComponent } from './item-details.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
+const noop = () => undefined;
+
 describe('ItemDetailsComponent', () => {
   let component: ItemDetailsComponent;
   let fixture: ComponentFixture<ItemDetailsComponent>;
@@ -31,7 +33,7 @@ describe('ItemDetailsComponent', () => {
             }
           }
         },
-        { provide: BsModalService, useValue: { show: () => ({}), hide: () => {}, onHide: { subscribe: () => {} } } }
+        { provide: BsModalService, useValue: { show: () => ({}), hide: noop, onHide: { subscribe: noop } } }
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })

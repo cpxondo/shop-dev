@@ -13,8 +13,8 @@ export class ItemsResolver  {
   constructor(private itemService: RetrieveItemsService, private router: Router) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<Item> {
-    const id = +route.paramMap.get('id');
-    const auxItem = {
+    const id = Number(route.paramMap.get('id') ?? 0);
+    const auxItem: Item = {
       id: 0,
       name: '',
       available: false,
@@ -24,11 +24,7 @@ export class ItemsResolver  {
     };
     return this.itemService.getItem(id).pipe(
       take(1),
-      map(item => {
-        if (item) {
-          return item;
-        }
-      }),
+      map(item => item ?? auxItem),
       catchError(val => {
         console.error(val, 'Failure!');
         this.router.navigate(['/items/1']);

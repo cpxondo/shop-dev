@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, TemplateRef, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { Item } from '../../../../shared/model';
 import { ShoppingCartService } from '../../../../shared/services/shopping-cart.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -9,14 +9,15 @@ import { Subscription } from 'rxjs';
     selector: 'app-item-details',
     templateUrl: './item-details.component.html',
     styleUrls: ['./item-details.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ItemDetailsComponent implements OnInit, OnDestroy {
 
-  selectedItem: Item;
+  selectedItem!: Item;
   itemQuantity: number;
-  modalRef: BsModalRef;
-  subscription: Subscription;
+  modalRef!: BsModalRef;
+  subscription?: Subscription;
 
   constructor(
     private shoopingCartService: ShoppingCartService,
@@ -36,7 +37,7 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
-  addToCart(item: Item, template: TemplateRef<any>) {
+  addToCart(item: Item, template: TemplateRef<unknown>) {
     this.shoopingCartService.addToCart(item, this.itemQuantity);
     this.modalRef = this.modalService.show(template);
     this.subscription = this.modalService.onHide.subscribe(() => {
